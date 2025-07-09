@@ -2,7 +2,7 @@ import { StatusBar, StyleSheet, useColorScheme, View, Text } from 'react-native'
 import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import TodoListScreen from './src/feature/todoList/screens/TodoListScreen';
+import TodoListScreen from './src/features/todoList/screens/TodoListScreen';
 
 import { store } from './src/store'
 

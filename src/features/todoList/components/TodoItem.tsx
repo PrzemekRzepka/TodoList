@@ -1,4 +1,5 @@
 import { View, Button, Text, StyleSheet } from "react-native"
+import { REMOVE_ITEM_TEXT } from "../../../shared/types/consts"
 
 interface TodoItemProps {
     id: string,
@@ -14,7 +15,7 @@ export default function TodoItem({ id, text, onRemove }: TodoItemProps) {
                 <Text>{new Date(Date.now()).toString()} :</Text>
                 <Text>{text}</Text>
             </View>
-            <Button title="Remove item" onPress={() => onRemove(id)} />
+            <Button title={REMOVE_ITEM_TEXT} onPress={() => onRemove(id)} />
         </View>
     )
 
