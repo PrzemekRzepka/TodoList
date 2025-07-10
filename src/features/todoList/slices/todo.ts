@@ -14,8 +14,12 @@ const todoSlice = createSlice({
             } else {
                 console.log('empty item')
             }
-
         },
+
+        addItems(state, action: PayloadAction<TodoList>) {
+            return action.payload
+        },
+
         removeItem(state, action: PayloadAction<string>) {
             const itemIndex = state.findIndex(item => item.id === action.payload);
 
@@ -29,6 +33,6 @@ const todoSlice = createSlice({
 })
 
 
-export const { addItem, removeItem } = todoSlice.actions
+export const { addItem, addItems, removeItem } = todoSlice.actions
 export const selectTodoListItems = (state: RootState) => state.todoSlice
 export default todoSlice.reducer;

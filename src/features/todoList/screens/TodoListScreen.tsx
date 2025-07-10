@@ -1,3 +1,4 @@
+import { useEffect, useCallback } from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,7 +7,7 @@ import { removeItem, selectTodoListItems } from "../slices/todo";
 
 import TodoItem from "../components/TodoItem";
 import NewItemInput from "../components/NewItemInput";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function TodoListScreen() {
@@ -18,15 +19,22 @@ export default function TodoListScreen() {
         dispatch(removeItem(id))
     }
 
+    useEffect(() => {
+        const saveItems = async () => {
+            try {
+                await AsyncStorage.setItem('TODO', JSON.stringify(todoItemList));
+            } catch (err) {
+                console.log('error during saving itemd: ', err)
+            }
+        }
+        saveItems();
+    }, [todoItemList])
+
 
     return (
         <SafeAreaView>
             <View style={style.container}>
-
-
-
                 <NewItemInput />
-
                 <FlatList data={todoItemList}
                     keyExtractor={(item) => item.id}
                     renderItem={(item) =>
@@ -39,9 +47,7 @@ export default function TodoListScreen() {
 
 const style = StyleSheet.create({
     container: {
-
         margin: 20,
-        // backgroundColor: 'green'
     },
     header: {
         flex: 1,
@@ -49,8 +55,5 @@ const style = StyleSheet.create({
         height: 400,
         backgroundColor: 'green',
     },
-    headerText: {
-        // fontSize: 20,
 
-    }
 })
