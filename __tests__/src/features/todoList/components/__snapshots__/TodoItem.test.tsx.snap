@@ -4,13 +4,87 @@ exports[`TodoItem component snapshots snapshot test 1`] = `
 <View
   style={
     {
-      "borderRadius": 0,
+      "alignItems": "center",
+      "backgroundColor": "#3b598a",
+      "borderRadius": 10,
       "borderWidth": 1,
-      "marginVertical": 10,
-      "padding": 6,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "marginVertical": 4,
+      "paddingHorizontal": 16,
     }
   }
 >
+  <View
+    accessibilityHint="Toggles checkbox to on"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "marginVertical": 8,
+        },
+        undefined,
+        {
+          "opacity": 1,
+        },
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "#ccc",
+          "borderRadius": 4,
+          "borderWidth": 1.5,
+          "height": 24,
+          "justifyContent": "center",
+          "opacity": 1,
+          "transform": [
+            {
+              "scale": 1,
+            },
+            {
+              "rotate": "0deg",
+            },
+          ],
+          "width": 24,
+        }
+      }
+    />
+  </View>
   <View
     style={
       {
@@ -20,16 +94,31 @@ exports[`TodoItem component snapshots snapshot test 1`] = `
       }
     }
   >
-    <Text>
-      Thu Jul 10 2025 19:51:28 GMT+0200 (czas środkowoeuropejski letni)
-       :
+    <Text
+      style={
+        {
+          "color": "white",
+        }
+      }
+    >
+      20.10.1999
     </Text>
-    <Text>
+    <Text
+      style={
+        [
+          {
+            "color": "white",
+          },
+          {
+            "fontSize": 20,
+          },
+        ]
+      }
+    >
       testText
     </Text>
   </View>
   <View
-    accessibilityRole="button"
     accessibilityState={
       {
         "busy": undefined,
@@ -59,32 +148,25 @@ exports[`TodoItem component snapshots snapshot test 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       {
+        "alignItems": "center",
+        "backgroundColor": "#367ff5",
+        "borderRadius": 10,
+        "height": 40,
+        "justifyContent": "center",
         "opacity": 1,
+        "width": 40,
       }
     }
   >
-    <View
+    <Text
       style={
-        [
-          {},
-        ]
+        {
+          "color": "white",
+        }
       }
     >
-      <Text
-        style={
-          [
-            {
-              "color": "#007AFF",
-              "fontSize": 18,
-              "margin": 8,
-              "textAlign": "center",
-            },
-          ]
-        }
-      >
-        REMOVE ITEM
-      </Text>
-    </View>
+      X
+    </Text>
   </View>
 </View>
 `;

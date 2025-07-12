@@ -2,8 +2,9 @@ import { useEffect, useCallback } from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from "@react-navigation/native";
 
-import { removeItem, selectTodoListItems } from "../slices/todo";
+import { removeItem, selectTodoListItems, toggleDone } from "../slices/todo";
 
 import TodoItem from "../components/TodoItem";
 import NewItemInput from "../components/NewItemInput";
@@ -19,41 +20,56 @@ export default function TodoListScreen() {
         dispatch(removeItem(id))
     }
 
-    useEffect(() => {
-        const saveItems = async () => {
-            try {
-                await AsyncStorage.setItem('TODO', JSON.stringify(todoItemList));
-            } catch (err) {
-                console.log('error during saving itemd: ', err)
-            }
-        }
-        saveItems();
-    }, [todoItemList])
+    function handleDone(id: string) {
+        dispatch(toggleDone(id))
+    }
 
+    useFocusEffect(
+        useCallback(() => {
+            const saveItems = async () => {
+                try {
+                    if (todoItemList.length > 0) {
+                        await AsyncStorage.setItem('TODO', JSON.stringify(todoItemList));
+                        console.log('saved item: ', JSON.stringify(todoItemList));
+                    }
+                } catch (err) {
+                    console.log('error during saving items: ', err);
+                }
+            };
+            saveItems();
+        }, [todoItemList])
+    );
 
     return (
-        <SafeAreaView>
-            <View style={style.container}>
-                <NewItemInput />
+        <SafeAreaView style={styles.safeArea}>
+            <View style={styles.container}>
+
                 <FlatList data={todoItemList}
                     keyExtractor={(item) => item.id}
                     renderItem={(item) =>
-                        <TodoItem id={item.item.id} text={item.item.text} onRemove={handleRemove} />
+                        <TodoItem
+                            id={item.item.id}
+                            text={item.item.text}
+                            createdAt={item.item.createdAt}
+                            isDone={item.item.isDone}
+                            onRemove={handleRemove}
+                            onDone={handleDone} />
                     } />
+                <NewItemInput />
             </View>
         </SafeAreaView>
     )
 }
 
-const style = StyleSheet.create({
-    container: {
-        margin: 20,
-    },
-    header: {
+const styles = StyleSheet.create({
+    safeArea: {
         flex: 1,
-        alignItems: 'center',
-        height: 400,
-        backgroundColor: 'green',
+        backgroundColor: "#121212",
     },
+    container: {
+        flex: 1,
+        margin: 20,
+
+    }
 
 })

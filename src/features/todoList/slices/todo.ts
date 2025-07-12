@@ -28,11 +28,17 @@ const todoSlice = createSlice({
                 return state
             }
             return state.filter(item => item.id !== action.payload)
+        },
+        toggleDone(state, action: PayloadAction<string>) {
+            return state.map(item =>
+                item.id == action.payload ?
+                    { ...item, isDone: !item.isDone } : item
+            )
         }
     }
 })
 
 
-export const { addItem, addItems, removeItem } = todoSlice.actions
+export const { addItem, addItems, removeItem, toggleDone } = todoSlice.actions
 export const selectTodoListItems = (state: RootState) => state.todoSlice
 export default todoSlice.reducer;

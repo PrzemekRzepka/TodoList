@@ -2,12 +2,10 @@ import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { Provider, useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { NavigationContainer } from '@react-navigation/native';
 import TodoListScreen from './src/features/todoList/screens/TodoListScreen';
 
 import { addItems } from './src/features/todoList/slices/todo';
-
-import { store } from './src/store'
 
 function App() {
   const dispatch = useDispatch()
@@ -15,20 +13,24 @@ function App() {
 
   async function loadItems() {
     const jsonItems = await AsyncStorage.getItem("TODO");
+    console.log(jsonItems);
     if (jsonItems) {
       dispatch(addItems(JSON.parse(jsonItems)));
+      console.log('loaded items: ');
+
+    } else {
+      console.log('no items to load');
     }
   }
 
   useEffect(() => {
     loadItems();
-  })
+  }, [])
 
   return (
-
-    <Provider store={store}>
+    <NavigationContainer>
       <TodoListScreen />
-    </Provider>
+    </NavigationContainer>
   );
 }
 
