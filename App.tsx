@@ -1,11 +1,15 @@
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { Provider, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 import TodoListScreen from './src/features/todoList/screens/TodoListScreen';
 
 import { addItems } from './src/features/todoList/slices/todo';
+
+const Drawer = createDrawerNavigator();
 
 function App() {
   const dispatch = useDispatch()
@@ -29,7 +33,23 @@ function App() {
 
   return (
     <NavigationContainer>
-      <TodoListScreen />
+      <Drawer.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#2e466e',
+          },
+          headerTintColor: '#fff',
+          drawerActiveTintColor: 'white',
+          drawerStyle: {
+            backgroundColor: '#2e466e',
+
+          },
+        }}>
+        <Drawer.Screen
+          name={"Todo List"}
+          component={TodoListScreen}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

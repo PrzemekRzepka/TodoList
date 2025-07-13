@@ -41,35 +41,32 @@ export default function TodoListScreen() {
     );
 
     return (
-        <SafeAreaView style={styles.safeArea}>
-            <View style={styles.container}>
+        <View style={styles.container}>
 
-                <FlatList data={todoItemList}
-                    keyExtractor={(item) => item.id}
-                    renderItem={(item) =>
-                        <TodoItem
-                            id={item.item.id}
-                            text={item.item.text}
-                            createdAt={item.item.createdAt}
-                            isDone={item.item.isDone}
-                            onRemove={handleRemove}
-                            onDone={handleDone} />
-                    } />
-                <NewItemInput />
-            </View>
-        </SafeAreaView>
+            <FlatList data={todoItemList}
+                style={styles.list}
+                keyExtractor={(item) => item.id}
+                renderItem={(item) =>
+                    <TodoItem
+                        id={item.item.id}
+                        text={item.item.text}
+                        createdAt={item.item.createdAt}
+                        isDone={item.item.isDone}
+                        onRemove={handleRemove}
+                        onDone={handleDone} />
+                } />
+            <NewItemInput />
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    safeArea: {
+    container: {
         flex: 1,
         backgroundColor: "#121212",
     },
-    container: {
-        flex: 1,
-        margin: 20,
-
+    list: {
+        paddingHorizontal: 12
     }
 
 })

@@ -61,11 +61,12 @@ describe('NewItemInput tests', () => {
         const button = getByText(ADD_TEXT);
 
         fireEvent.changeText(inputText, TEST_TEXT);
-        fireEvent.press(button)
 
         await waitFor(() => {
             expect(inputText.props.value).toBe(TEST_TEXT);
         });
+
+        fireEvent.press(button)
 
         expect(dispatchMock).toHaveBeenCalledWith(
             expect.objectContaining({

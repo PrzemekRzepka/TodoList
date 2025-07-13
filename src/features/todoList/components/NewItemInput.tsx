@@ -49,7 +49,10 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'flex-start',
         gap: 12,
-        marginBottom: '20%',
+        paddingBottom: 46,
+        paddingTop: 16,
+        paddingHorizontal: 20,
+        backgroundColor: '#2e466e'
 
     },
     buttonContainer: {

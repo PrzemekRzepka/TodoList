@@ -5,14 +5,18 @@ exports[`NewItemInput tests snapshot 1`] = `
   style={
     {
       "alignItems": "flex-start",
+      "backgroundColor": "#2e466e",
       "gap": 12,
-      "marginBottom": 10,
+      "paddingBottom": 46,
+      "paddingHorizontal": 20,
+      "paddingTop": 16,
     }
   }
 >
   <TextInput
     onChangeText={[Function]}
     placeholder="To do task text"
+    placeholderTextColor="#ccc"
     style={
       {
         "backgroundColor": "#3b598a",
@@ -27,6 +31,7 @@ exports[`NewItemInput tests snapshot 1`] = `
   <View
     style={
       {
+        "alignSelf": "flex-end",
         "width": "20%",
       }
     }
