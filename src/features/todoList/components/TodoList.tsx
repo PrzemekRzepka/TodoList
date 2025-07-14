@@ -5,8 +5,6 @@ import { REMOVE_ITEM_TEXT } from "../../../shared/types/consts"
 import { TodoItem as TodoItemProps } from "../../../shared/types/todoTypes";
 
 import Button from "./Button"
-import { TodoItem } from "../../../shared/types/todoTypes";
-
 
 interface TodoListProps {
     id: string,

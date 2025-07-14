@@ -18,7 +18,7 @@ export type TodoList = {
 }
 
 export type RootStackParamList = {
-    TodoLists: undefined;
+    TodoListsScreen: undefined;
     TodoItemsScreen: {
         listTitle: string,
         createdAt: string,
@@ -27,14 +27,9 @@ export type RootStackParamList = {
     };
 };
 
-export type RootRouteParamProps = RouteProp<RootStackParamList, 'TodoItemsScreen'>
-export type RootNavigationParamProps = NativeStackNavigationProp<RootStackParamList, 'TodoItemsScreen'>
 
-export type RootStackScreenProp<T extends keyof RootStackParamList> = {
-    navigation: NativeStackNavigationProp<RootStackParamList, T>,
-    route: RouteProp<RootStackParamList, T>
 
-}
+
 
 
 

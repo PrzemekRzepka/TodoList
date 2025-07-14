@@ -1,13 +1,10 @@
-import { useCallback } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { RouteProp, useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 
 import { removeItem, selectTodoLists, toggleDone } from "../slices/todo";
-import { TodoItem as TodoItemProps } from "../../../shared/types/todoTypes";
 import TodoItem from "../components/TodoItem";
 import NewItemInput from "../components/NewItemInput";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackParamList } from "../../../shared/types/todoTypes";
 
 

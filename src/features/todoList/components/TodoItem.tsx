@@ -19,7 +19,7 @@ export default function TodoItem({ listId, id, text, isDone, onRemove, onDone }:
     const styles = getStyles(isDone)
 
     return (
-        <View style={styles.constainer}>
+        <View style={styles.container}>
             <AdvancedCheckbox
                 value={isDone}
                 onValueChange={() => onDone(listId, id)}
@@ -34,14 +34,13 @@ export default function TodoItem({ listId, id, text, isDone, onRemove, onDone }:
 }
 
 const getStyles = (isDone: boolean) => StyleSheet.create({
-    constainer: {
+    container: {
         flexDirection: 'row',
         borderRadius: 10,
         borderWidth: 1,
         marginVertical: 2,
         paddingHorizontal: 16,
         backgroundColor: isDone ? '#5a6069' : '#3b598a',
-        justifyContent: 'center',
         alignItems: 'center'
     },
     textContainer: {

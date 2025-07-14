@@ -40,7 +40,7 @@ function App() {
     return (
       <Stack.Navigator>
         <Stack.Screen
-          name='TodoLists'
+          name='TodoListsScreen'
           component={TodoListsScreen}
           options={{ headerShown: false }} />
         <Stack.Screen
@@ -71,7 +71,7 @@ function App() {
           },
         }}>
         <Drawer.Screen
-          name={"To Do Lists"}
+          name={"TODO Lists"}
           component={ToDoStack}
         />
       </Drawer.Navigator>

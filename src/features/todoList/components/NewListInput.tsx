@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 
 import Button from "./Button"
-import { addItem, addList } from "../slices/todo"
+import { addList } from "../slices/todo"
 import { ADD_TEXT, NEW_LIST_INPUT_PLACEHOLDER_TEXT } from "../../../shared/types/consts"
 
 
