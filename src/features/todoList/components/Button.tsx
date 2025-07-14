@@ -10,15 +10,12 @@ interface buttonProps {
 export default function Button({ title, onPress, style }: buttonProps) {
     return (
         <TouchableOpacity
-            style={[style, styles.container]}
+            style={[styles.container, style]}
             onPress={onPress}>
-
             <Text style={styles.title}>{title}</Text>
-
         </TouchableOpacity>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {

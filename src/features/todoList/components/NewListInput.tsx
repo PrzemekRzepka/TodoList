@@ -3,29 +3,23 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 
 import Button from "./Button"
-import { addItem } from "../slices/todo"
-import { ADD_TEXT, TEXT_INPUT_PLACEHOLDER_TEXT } from "../../../shared/types/consts"
+import { addItem, addList } from "../slices/todo"
+import { ADD_TEXT, NEW_LIST_INPUT_PLACEHOLDER_TEXT } from "../../../shared/types/consts"
 
-interface NewItemInputProps {
-    listId: string
-}
 
-export default function NewItemInput({ listId }: NewItemInputProps) {
-    const [itemText, setItemText] = useState<string>('')
+export default function NewListInput() {
+    const [listTitle, setlistTitle] = useState<string>('')
 
     const dispatch = useDispatch()
 
-    function handleAddingItem() {
-        if (itemText.trim()) {
-            dispatch(addItem({
-                listId: listId, item: {
-                    id: Date.now().toString(),
-                    text: itemText,
-                    isDone: false,
-                    createdAt: new Date(Date.now()).toLocaleString()
-                }
+    function handleAddingList() {
+        if (listTitle.trim()) {
+            dispatch(addList({
+                id: Date.now().toString(),
+                title: listTitle,
+                createdAt: new Date(Date.now()).toLocaleString()
             }))
-            setItemText('');
+            setlistTitle('');
         } else {
             //TODO add dialog box
             console.log('Empty note!');
@@ -36,15 +30,15 @@ export default function NewItemInput({ listId }: NewItemInputProps) {
         <View style={styles.container}>
             <TextInput
                 style={styles.input}
-                placeholder={TEXT_INPUT_PLACEHOLDER_TEXT}
-                onChangeText={setItemText}
-                value={itemText}
+                placeholder={NEW_LIST_INPUT_PLACEHOLDER_TEXT}
+                onChangeText={setlistTitle}
+                value={listTitle}
                 placeholderTextColor="#ccc"
             />
             <View style={styles.buttonContainer}>
                 <Button
                     title={ADD_TEXT}
-                    onPress={handleAddingItem} />
+                    onPress={handleAddingList} />
             </View>
         </View>
     )

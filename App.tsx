@@ -4,12 +4,17 @@ import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import TodoListScreen from './src/features/todoList/screens/TodoListScreen';
+import TodoItemsScreen from './src/features/todoList/screens/TodoItemsScreen';
+import TodoListsScreen from './src/features/todoList/screens/TodoListsScreen';
+import ListHeader from './src/features/todoList/components/ListHeader';
 
-import { addItems } from './src/features/todoList/slices/todo';
+import { addLists } from './src/features/todoList/slices/todo';
+import { RootStackParamList } from './src/shared/types/todoTypes';
 
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   const dispatch = useDispatch()
@@ -19,7 +24,7 @@ function App() {
     const jsonItems = await AsyncStorage.getItem("TODO");
     console.log(jsonItems);
     if (jsonItems) {
-      dispatch(addItems(JSON.parse(jsonItems)));
+      dispatch(addLists(JSON.parse(jsonItems)));
       console.log('loaded items: ');
 
     } else {
@@ -30,6 +35,26 @@ function App() {
   useEffect(() => {
     loadItems();
   }, [])
+
+  function ToDoStack() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name='TodoLists'
+          component={TodoListsScreen}
+          options={{ headerShown: false }} />
+        <Stack.Screen
+          name="TodoItemsScreen"
+          component={TodoItemsScreen}
+          options={({ route }) => ({
+            header: () => (
+              <ListHeader title={route.params.listTitle} createdAt={route.params.createdAt} />
+            )
+          })}
+        />
+      </Stack.Navigator>
+    )
+  }
 
   return (
     <NavigationContainer>
@@ -46,8 +71,8 @@ function App() {
           },
         }}>
         <Drawer.Screen
-          name={"Todo List"}
-          component={TodoListScreen}
+          name={"To Do Lists"}
+          component={ToDoStack}
         />
       </Drawer.Navigator>
     </NavigationContainer>
